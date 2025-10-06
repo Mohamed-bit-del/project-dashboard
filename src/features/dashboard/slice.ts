@@ -56,9 +56,9 @@ const projectsSlice = createSlice({
     deleteProject: (state, action: PayloadAction<number>) => {
       state.projects = state.projects.filter((p) => p.id !== action.payload);
     },
-    editProjectField: (
-      state,
-      action: PayloadAction<{ id: number; field: keyof Project; value: any }>
+    editProjectField: <K extends keyof Project>(
+      state: ProjectsState,
+      action: PayloadAction<{ id: number; field: K; value: Project[K] }>
     ) => {
       const { id, field, value } = action.payload;
       const project = state.projects.find((p) => p.id === id);
@@ -66,6 +66,7 @@ const projectsSlice = createSlice({
         project[field] = value;
       }
     },
+
     updateProject: (state, action: PayloadAction<Project>) => {
       const index = state.projects.findIndex((p) => p.id === action.payload.id);
       if (index !== -1) state.projects[index] = action.payload;

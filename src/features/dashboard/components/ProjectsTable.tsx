@@ -6,9 +6,9 @@ import { TableContainer, TableHeader, TableBody } from "./TableContainer";
 interface Project {
     id: number;
     name: string;
-    status: "Pending" | "In Progress" | "Completed";
-    start: string;
-    end: string;
+    status: "Active" | "Completed" | "Pending";
+    startDate: string;
+    endDate: string;
     progress: number;
     budget: number;
 }
@@ -53,8 +53,8 @@ export default function ProjectsTable({ projects, onEdit, onDelete }: ProjectsTa
                             </select>
                         </td>
 
-                        <td className="px-4 py-2">{p.start}</td>
-                        <td className="px-4 py-2">{p.end}</td>
+                        <td className="px-4 py-2">{p.startDate}</td>
+                        <td className="px-4 py-2">{p.endDate}</td>
 
                         <td className="px-4 py-2">
                             <input
